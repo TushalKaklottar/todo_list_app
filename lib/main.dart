@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'app/modules/home/home_view.dart';
 
@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetCupertinoApp(
-      theme: CupertinoThemeData(
+    return GetMaterialApp(
+      theme: ThemeData(
         brightness: Brightness.light,
-        barBackgroundColor: CupertinoColors.white,
+        appBarTheme: AppBarTheme(backgroundColor: Colors.white),
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
