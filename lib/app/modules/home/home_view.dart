@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/app/core/app_string.dart';
 import 'package:todo_list_app/app/core/colors.dart';
 import 'package:get/get.dart';
+import 'package:todo_list_app/app/core/custom_text.dart';
 import 'package:todo_list_app/app/modules/home/home_controller.dart';
 
 class HomeView extends StatefulWidget {
@@ -55,7 +57,6 @@ class _HomeViewState extends State<HomeView> {
               Container(
                 height: Get.height * 0.35,
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
                   color: AppColors.appColor,
                   borderRadius: const BorderRadius.only(
@@ -67,20 +68,13 @@ class _HomeViewState extends State<HomeView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "My Todo List",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.white,
-                      ),
+                      AppString.myTodoList,
+                      style: AppTextStyles.tittleStyle,
                     ),
                     Obx(
                       () => Text(
                         homeController.formattedDate.value,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: CupertinoColors.white,
-                        ),
+                        style: AppTextStyles.subTittleStyle,
                       ),
                     ),
                   ],
@@ -89,12 +83,11 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
           Positioned(
-            top: Get.height * 0.22,
+            top: Get.height * 0.215,
             left: 0,
             right: 0,
             bottom: 70,
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Padding(
@@ -119,7 +112,7 @@ class _HomeViewState extends State<HomeView> {
                       },
                       separatorBuilder:
                           (context, index) => Divider(
-                            color: Colors.orange.shade100,
+                            color: AppColors.appColor2,
                             thickness: 1,
                             height: 1,
                           ),
@@ -185,7 +178,9 @@ class _HomeViewState extends State<HomeView> {
             child: CupertinoButton(
               color: AppColors.appColor,
               borderRadius: BorderRadius.circular(30),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed('/addTask');
+              },
               child: Text(
                 "Add New Task",
                 style: TextStyle(color: AppColors.white),
