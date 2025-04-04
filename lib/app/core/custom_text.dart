@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'colors.dart';
 
 class CustomText extends StatelessWidget {
@@ -51,6 +50,14 @@ class AppTextStyles {
       fontSize: 15,
       fontWeight: FontWeight.w500,
       color: AppColors.white,
+    );
+  }
+
+  static TextStyle get formFieldStyle {
+    return GoogleFonts.poppins(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: AppColors.black,
     );
   }
 }

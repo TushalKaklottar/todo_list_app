@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_list_app/app/core/app_string.dart';
+import 'package:todo_list_app/app/core/colors.dart';
 import 'package:todo_list_app/app/core/custom_text.dart';
 import 'package:todo_list_app/app/modules/new_task/task_controller.dart';
 import 'package:todo_list_app/app/widget/sizedBox.dart';
@@ -13,7 +14,7 @@ class TaskAdd extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: AppColors.appColor,
         centerTitle: true,
         title: CustomText(
           text: AppString.addNewTask,
@@ -35,16 +36,19 @@ class TaskAdd extends StatelessWidget {
             children: [
               CustomText(
                 text: AppString.taskTitle,
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
               CustomSpacing(height: Get.height * 0.01),
               TextField(
+                style: AppTextStyles.formFieldStyle,
                 onChanged: (val) => taskController.taskTitle.value = val,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: AppString.taskTitle,
                   hintStyle: AppTextStyles.hintStyle,
+                  fillColor: AppColors.appColor3,
+                  filled: true,
                 ),
               ),
 
@@ -64,7 +68,7 @@ class TaskAdd extends StatelessWidget {
                   children: List.generate(6, (index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: InkWell(
+                      child: GestureDetector(
                         onTap: () {
                           taskController.selectedCategory.value = index;
                         },
@@ -72,16 +76,16 @@ class TaskAdd extends StatelessWidget {
                           width: Get.height * 0.07,
                           height: Get.height * 0.07,
                           decoration: BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle, // Circle बनाएगा
+                            color: taskController.categoryIconColor[index],
+                            shape: BoxShape.circle,
                             border: Border.all(
                               color: Colors.black,
                               width: 1,
                             ), // Border देगा
                           ),
                           child: Icon(
-                            CupertinoIcons.person,
-                            color: Colors.white,
+                            taskController.categoryIcons[index],
+                            color: taskController.categoryColor[index],
                           ),
                         ),
                       ),
